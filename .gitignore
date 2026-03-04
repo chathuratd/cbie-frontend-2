@@ -15,11 +15,13 @@ env/
 data/
 *.csv
 *.log
-debug_out.txt
-output.log
-clustering_out.txt
-openai_test_out.txt
-test_out.txt
+*.txt
+!requirements.txt
+*.json
+
+# SQL files
+*.sql
+!setup_supabase.sql
 
 # IDE
 .vscode/
