@@ -439,7 +439,22 @@ Polls the status of a queued pipeline run.
 
 ---
 
-### 6.4 Health & Service Info
+### 6.4 Admin API Endpoints (Frontend Dashboard)
+
+The admin endpoints allow an internal dashboard to discover users, inspect raw behaviors, and manually trigger pipeline runs without modifying existing public API behavior.
+
+| Method | Path | Description |
+|--------|------|-------------|
+| `GET`  | `/admin/users` | Lists all users with ACTIVE behaviors, showing total behavior count and if a profile exists. |
+| `GET`  | `/admin/users/{user_id}` | Combines behavior stats with profile summary stats for a single user. |
+| `GET`  | `/admin/users/{user_id}/profile` | Returns the full Core Behaviour Profile formatted with distinct categories (Critical Constraints, Stable, Emerging, Archived, Noise Counts). |
+| `GET`  | `/admin/users/{user_id}/behaviors` | Returns raw `behaviors` rows (excluding embeddings) for data preview (`?limit=50&offset=0`). |
+| `POST` | `/admin/users/{user_id}/run_pipeline` | Thin wrapper around pipeline execution; triggers an async job and returns a `job_id`. |
+| `GET`  | `/admin/jobs/{job_id}` | Thin wrapper to poll the current status of an admin-triggered pipeline run. |
+
+---
+
+### 6.5 Health & Service Info
 
 | Method | Path | Description |
 |--------|------|-------------|
@@ -448,7 +463,7 @@ Polls the status of a queued pipeline run.
 
 ---
 
-### 6.5 API Design Decisions
+### 6.6 API Design Decisions
 
 | Decision | Rationale |
 |----------|-----------|
